@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+"use strict";
+
+let parseArgs = require("minimist");
+let donny = require("..");
+
+let HELP = `
+Usage:
+  $ donny [options] [path]
+
+where path is the path to the directory
+you want to serve, defaulting to .
+
+Options:
+  -h, --help
+    display this help message
+  -p, --port
+    port to bind to, default: 8080
+  -b, --bind
+    bind address, default: 0.0.0.0
+`.trim();
+
+let argv = parseArgs(process.argv.slice(2), {
+	default: {
+		port: "8080",
+		bind: "0.0.0.0"
+	},
+	alias: {
+		p: "port",
+		b: "bind",
+		h: "help"
+	}
+});
+
+if(argv.help) {
+	console.error(HELP);
+	process.exit(0);
+}
+
+let webroot = argv._[0] || ".";
+
+donny({
+	port: argv.port,
+	bind: argv.bind,
+	webroot
+}).then(() => {
+	console.error(`Serving ${webroot} on port ${argv.port}`);
+});

@@ -1,0 +1,33 @@
+{
+	"name": "donny",
+	"version": "0.1.0",
+	"description": "simple static HTTP server for development",
+	"main": "index.js",
+	"scripts": {
+		"test": "eslint --cache index.js bin/donny && echo ✓"
+	},
+	"keywords": [
+		"development",
+		"web server"
+	],
+	"author": "Lucas Dohmen <lucas@dohmen.io> (https://lucas.dohmen.io)",
+	"license": "Apache-2.0",
+	"homepage": "https://github.com/faucet-pipeline/donny",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/faucet-pipeline/donny.git"
+	},
+	"bugs": {
+		"url": "https://github.com/faucet-pipeline/donny/issues"
+	},
+	"bin": {
+		"donny": "bin/donny"
+	},
+	"dependencies": {
+		"minimist": "~1.2.0"
+	},
+	"devDependencies": {
+		"eslint-config-fnd": "^1.6.0",
+		"release-util-fnd": "^1.1.1"
+	}
+}

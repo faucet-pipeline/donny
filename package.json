@@ -1,6 +1,6 @@
 {
 	"name": "donny",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "simple static HTTP server for development",
 	"main": "index.js",
 	"scripts": {
@@ -24,10 +24,10 @@
 		"donny": "bin/donny"
 	},
 	"dependencies": {
-		"minimist": "~1.2.0"
+		"minimist": "^1.2.5"
 	},
 	"devDependencies": {
-		"eslint-config-fnd": "^1.6.0",
-		"release-util-fnd": "^1.1.1"
+		"eslint-config-fnd": "^1.8.0",
+		"release-util-fnd": "^2.0.1"
 	}
 }

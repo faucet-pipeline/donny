@@ -2,9 +2,13 @@
 	".css": "text/css",
 	".html": "text/html",
 	".ico": "image/x-icon",
+	".jpeg": "image/jpeg",
 	".jpg": "image/jpeg",
 	".js": "text/javascript",
 	".json": "application/json",
 	".png": "image/png",
-	".svg": "image/svg+xml"
+	".svg": "image/svg+xml",
+	".webp": "image/webp",
+	".woff": "font/woff",
+	".woff2": "font/woff2"
 }

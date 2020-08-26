@@ -41,6 +41,6 @@ let read = async pathname => {
 };
 
 let contentTypeFor = pathname => {
-	let ext = path.parse(pathname).ext;
+	let ext = path.parse(pathname).ext.toLowerCase();
 	return mimeTypes[ext] || "text/plain";
 };

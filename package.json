@@ -27,7 +27,7 @@
 		"minimist": "^1.2.5"
 	},
 	"devDependencies": {
-		"eslint-config-fnd": "^1.8.0",
+		"eslint-config-fnd": "^1.12.0",
 		"release-util-fnd": "^2.0.1"
 	}
 }

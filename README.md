@@ -2,8 +2,6 @@ donny
 =====
 
 [![npm](https://img.shields.io/npm/v/donny.svg)](https://www.npmjs.com/package/donny)
-[![build status](https://travis-ci.org/faucet-pipeline/donny.svg?branch=master)](https://travis-ci.org/faucet-pipeline/donny)
-[![Greenkeeper badge](https://badges.greenkeeper.io/faucet-pipeline/donny.svg)](https://greenkeeper.io)
 
 > as a surfer he explored the beaches of Southern California, from La Jolla to
 > Leo Carrillo and up to Pismo

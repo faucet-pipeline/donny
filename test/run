@@ -1,0 +1,69 @@
+#!/bin/bash
+set -euo pipefail
+
+port="8080"
+authority="localhost:$port"
+
+main() {
+	pid=$(start_server)
+	wait_for_server
+
+	run_tests
+	echo "SUCCESS: all tests passed"
+}
+
+run_tests() {
+	curl -s --HEAD $authority | head -n1 | grep -q "200 OK" || \
+		fail "Status code for / was not 200 OK"
+
+	curl -s --HEAD $authority | grep -q "text/html" || \
+		fail "Content-Type for / was not text/html"
+
+	curl -s $authority | grep -q "<!DOCTYPE html>" || \
+		fail "HTML page was not delivered at /"
+
+	curl -s --HEAD $authority/index.js | head -n1 | grep -q "200 OK" || \
+		fail "Status code for /index.js was not 200 OK"
+
+	curl -s --HEAD $authority/index.js | grep -q "text/javascript" || \
+		fail "Content-Type for /index.js was not text/javascript"
+
+	curl -s $authority/index.js | grep -q "console.log" || \
+		fail "JavaScript file was not delivered at /index.js"
+
+	curl -s --HEAD $authority/walter | head -n1 | grep -q "404 Not Found" || \
+		fail "Status code for /walter was not 404 Not Found"
+
+	curl -s $authority/walter | grep -q "File sample/walter not found" || \
+		fail "Not found page was not delivered at /walter"
+}
+
+start_server() {
+	./bin/donny sample >/dev/null 2>&1 &
+	echo $!
+}
+
+wait_for_server() {
+	while true; do
+		if lsof -i :$port > /dev/null; then
+			break
+		fi
+	done
+}
+
+fail() {
+	msg="${1:?}"
+
+	echo; echo "FAILURE: $msg"
+	false
+}
+
+quit() {
+	if [ -n "$pid" ]; then
+		kill -9 "$pid"
+	fi
+}
+
+trap quit EXIT
+
+main

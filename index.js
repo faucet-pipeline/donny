@@ -33,7 +33,7 @@ module.exports = ({ port, bind, webroot }) => {
 	});
 };
 
-let read = async pathname => {
+async function read(pathname) {
 	let stats = await stat(pathname);
 
 	if(stats.isDirectory()) {
@@ -41,9 +41,9 @@ let read = async pathname => {
 	}
 
 	return [await readFile(pathname), contentTypeFor(pathname)];
-};
+}
 
-let contentTypeFor = pathname => {
+function contentTypeFor(pathname) {
 	let ext = path.parse(pathname).ext.toLowerCase();
 	return mimeTypes[ext] || "text/plain";
-};
+}

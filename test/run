@@ -22,6 +22,9 @@ run_tests() {
 	curl -s $authority | grep -q "<!DOCTYPE html>" || \
 		fail "HTML page was not delivered at /"
 
+	curl -s --HEAD $authority | grep -q "Content-Length: $(wc -c < sample/index.html)" || \
+		fail "Content length for / was wrong"
+
 	curl -s --HEAD $authority/index.js | head -n1 | grep -q "200 OK" || \
 		fail "Status code for /index.js was not 200 OK"
 
@@ -30,6 +33,9 @@ run_tests() {
 
 	curl -s $authority/index.js | grep -q "console.log" || \
 		fail "JavaScript file was not delivered at /index.js"
+
+	curl -s --HEAD $authority/index.js | grep -q "Content-Length: $(wc -c < sample/index.js)" || \
+		fail "Content length for /index.js was wrong"
 
 	curl -s --HEAD $authority/walter | head -n1 | grep -q "404 Not Found" || \
 		fail "Status code for /walter was not 404 Not Found"

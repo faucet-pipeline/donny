@@ -15,6 +15,7 @@ module.exports = ({ port, bind, webroot }) => {
 				let [data, contentType] = await read(pathname);
 
 				res.setHeader("Content-Type", contentType);
+				res.setHeader("Content-Length", data.length);
 				res.end(data);
 			} catch(err) {
 				res.setHeader("Content-Type", "text/plain; charset=utf-8");

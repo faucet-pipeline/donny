@@ -16,7 +16,7 @@ run_tests() {
 	curl -s --HEAD $authority | head -n1 | grep -q "200 OK" || \
 		fail "Status code for / was not 200 OK"
 
-	curl -s --HEAD $authority | grep -q "text/html" || \
+	curl -s --HEAD $authority | grep -q "text/html; charset=utf-8" || \
 		fail "Content-Type for / was not text/html"
 
 	curl -s $authority | grep -q "<!DOCTYPE html>" || \
@@ -25,7 +25,7 @@ run_tests() {
 	curl -s --HEAD $authority/index.js | head -n1 | grep -q "200 OK" || \
 		fail "Status code for /index.js was not 200 OK"
 
-	curl -s --HEAD $authority/index.js | grep -q "text/javascript" || \
+	curl -s --HEAD $authority/index.js | grep -q "text/javascript; charset=utf-8" || \
 		fail "Content-Type for /index.js was not text/javascript"
 
 	curl -s $authority/index.js | grep -q "console.log" || \

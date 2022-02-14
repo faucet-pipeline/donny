@@ -13,7 +13,8 @@ module.exports = ({ port, bind, webroot }) => {
 
 			try {
 				let [data, contentType] = await read(pathname);
-				res.setHeader("Content-type", contentType);
+
+				res.setHeader("Content-Type", contentType);
 				res.end(data);
 			} catch(err) {
 				if(err.code === "ENOENT") {

@@ -17,6 +17,8 @@ module.exports = ({ port, bind, webroot }) => {
 				res.setHeader("Content-Type", contentType);
 				res.end(data);
 			} catch(err) {
+				res.setHeader("Content-Type", "text/plain; charset=utf-8");
+
 				if(err.code === "ENOENT") {
 					res.statusCode = 404;
 					res.end(`File ${pathname} not found!`);

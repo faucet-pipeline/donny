@@ -34,6 +34,9 @@ run_tests() {
 	curl -s --HEAD $authority/walter | head -n1 | grep -q "404 Not Found" || \
 		fail "Status code for /walter was not 404 Not Found"
 
+	curl -s --HEAD $authority/walter | grep -q "text/plain; charset=utf-8" || \
+		fail "Content-Type for / was not text/plain; charset=utf-8"
+
 	curl -s $authority/walter | grep -q "File sample/walter not found" || \
 		fail "Not found page was not delivered at /walter"
 }
